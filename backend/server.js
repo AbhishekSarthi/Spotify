@@ -6,10 +6,11 @@ var request = require("request");
 var client_id = "64b2891d55f24004aaf09173a7816598";
 let client_secret = "052814d35e3b4e8c87c579ff6b706e8a";
 var redirect_uri = "http://localhost:5000/callback";
+let access_token = "";
 
 app.get("/login", function (req, res) {
   var state = "asdfghjklpoiuytrewq";
-  var scope = "user-read-private%20user-read-email";
+  var scope = "user-read-private%20user-read-email%20user-top-read";
   //   console.log(res);
   res.redirect(
     `https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&scope=${scope}&redirect_uri=${redirect_uri}&state=${state}`
@@ -53,10 +54,10 @@ app.get("/callback", function (req, res) {
     request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         console.log(body);
-        var access_token = body.access_token,
-          refresh_token = body.refresh_token;
+        (access_token = body.access_token),
+          (refresh_token = body.refresh_token);
 
-        var options = {
+        let options = {
           url: "https://api.spotify.com/v1/me",
           headers: { Authorization: "Bearer " + access_token },
           json: true,
@@ -66,24 +67,34 @@ app.get("/callback", function (req, res) {
         request.get(options, function (error, response, body) {
           console.log(body);
         });
-
-        //     querystring.stringify({
-        //       access_token: access_token,
-        //       refresh_token: refresh_token,
-        //     })
-        // );
         res.send("success");
       } else {
-        // res.redirect(
-        //   "/#" +
-        //     querystring.stringify({
-        //       error: "invalid_token",
-        //     })
-        // );
         res.send("ERR");
       }
     });
   }
+});
+
+app.get("/artist", async function (req, res) {
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=short_term",
+    headers: { Authorization: "Bearer " + access_token },
+  };
+
+  let { data } = await axios.request(config);
+  console.log(data);
+  res.send(data);
+  // axios
+  //   .request(config)
+  //   .then((response) => {
+  //     console.log(JSON.stringify(response.data));
+  //     res.send(response.data);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
 });
 
 // app.get("/callback", async function (req, res) {
