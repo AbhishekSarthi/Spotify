@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 var request = require("request");
+const cors = require("cors");
+app.use(cors());
 
 var client_id = "64b2891d55f24004aaf09173a7816598";
 let client_secret = "052814d35e3b4e8c87c579ff6b706e8a";
