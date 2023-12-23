@@ -1,18 +1,18 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const axios = require("axios");
 var request = require("request");
-const cors = require("cors");
 app.use(cors());
 
-var client_id = "64b2891d55f24004aaf09173a7816598";
+let client_id = "64b2891d55f24004aaf09173a7816598";
 let client_secret = "052814d35e3b4e8c87c579ff6b706e8a";
-var redirect_uri = "http://localhost:5000/callback";
+let redirect_uri = "http://localhost:5000/callback";
 let access_token = "";
 
 app.get("/login", function (req, res) {
-  var state = "asdfghjklpoiuytrewq";
-  var scope = "user-read-private%20user-read-email%20user-top-read";
+  let state = "asdfghjklpoiuytrewq";
+  let scope = "user-read-private%20user-read-email%20user-top-read";
   //   console.log(res);
   res.redirect(
     `https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&scope=${scope}&redirect_uri=${redirect_uri}&state=${state}`

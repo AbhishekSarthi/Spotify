@@ -1,19 +1,55 @@
 body{
+  margin: 0;
+  padding: 0;
   background: rgb(0,0,0);
   background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(28,28,28,1) 53%, rgba(11,11,11,1) 92%); color: white;
   font-family: 'Noto Sans', sans-serif;
   font-family: 'Open Sans', sans-serif;
   font-family: 'Roboto Mono', monospace;
 }
-.App {
+/* .App {
+  display: grid;
+  align-items: center;
+  
+  justify-content: center;
+  }  */
+.Home{
+  width: 100%;
+  overflow: hidden;
   text-align: center;
-  }
+  position: relative;
+  z-index: -1;
+  background-color: rgb(107, 143, 112);
+  margin-bottom: 5px;
+}  
 
-.spotify-btn{
-  background-color: #1ED760;
+.Login{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;  
   color: white;
-  width: 150px;
-  padding: 8px;
+  
+}
+
+.Login a{
+  /* margin-top: 200px; */
+  text-decoration: none;
+  background-color: #1ED760;
+  padding: 8px 30px;
+  color: white;
   font-size: medium;
   border-radius: 15px;
 }
+
+/* 
+button{
+  margin-left: 43.5%;
+  
+  width: 200px;
+  background-color: #1ED760;
+  padding: 8px 30px;
+  color: white;
+  font-size: medium;
+  border-radius: 15px;
+} */
