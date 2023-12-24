@@ -1,12 +1,17 @@
-import Home from "./components/Home";
 import Login from "./components/Login";
 import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      {/* <Router> */}
+      <Navbar />
+      {/* <Switch> */}
+      {/* <Route path="/Login" exact component={Login} /> */}
+      {/* </Switch> */}
       <Login />
+      {/* </Router> */}
     </div>
   );
 }

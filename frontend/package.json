@@ -1,6 +1,5 @@
 {
   "name": "frontend",
-  "proxy": "https://accounts.spotify.com/authorize",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

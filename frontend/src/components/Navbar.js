@@ -1,11 +1,11 @@
 import React from "react";
 
-function Home() {
+function Navbar() {
   return (
-    <div className="Home">
+    <div className="Navbar">
       <h3>Spotify App</h3>
     </div>
   );
 }
 
-export default Home;
+export default Navbar;
