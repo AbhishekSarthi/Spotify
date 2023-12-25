@@ -37,11 +37,17 @@ function Login() {
         let response = await axios.request(config);
         console.log(response.data);
         setProfileData(response.data);
-        console.log(profileData);
-        setProfilePicture(response.data.images[1].url);
+        // console.log(profileData);
+        console.log("logger", response.data.images);
+        if (response.data.images.length > 0) {
+          console.log("Hello img");
+          setProfilePicture(response.data.images[1].url);
+        }
         setDisplayName(response.data.display_name);
       } catch (e) {
-        console.log(e.message, " , ", e.response.data.error.message);
+        console.log("Error body", e);
+        // window.localStorage.removeItem("access_token");
+        // window.localStorage.removeItem("refresh_token");
       }
     };
 
@@ -126,7 +132,11 @@ function Login() {
       {accessToken.length !== 0 ? (
         <>
           <h4>Yo! {displayName} How is it going?🔥🔥</h4>
-          <img src={profilePicture} width="300px" alt="Profile" />
+          {profilePicture.length > 0 ? (
+            <img src={profilePicture} width="300px" alt="Profile" />
+          ) : (
+            <>{/* <img src="" /> */}</>
+          )}
         </>
       ) : (
         <a

@@ -3,24 +3,24 @@ import axios from "axios";
 let accessToken = "";
 let refreshToken = "";
 
-function Songs() {
-  let [userData, setUserData] = useState([]);
+function Recommendations() {
+  let [recommendationsData, setRecommendationsData] = useState([]);
   useEffect(() => {
-    const getUserTopArtist = async () => {
+    const getRecommendations = async () => {
       let authorization_token = "Bearer " + accessToken;
       console.log(authorization_token);
 
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=long_term",
+        url: "https://api.spotify.com/v1/recommendations?limit=20&seed_artists=6M2wZ9GZgrQXHCFfjv46we%2C26VFTg2z8YR0cCuwLzESi2",
         headers: {
           Authorization: authorization_token,
         },
       };
       try {
         const response = await axios.request(config);
-        setUserData(response.data.items);
+        setRecommendationsData(response.data.tracks);
         console.log(response.data);
       } catch (e) {
         console.log("Error - ", e.message, e.response.data.error.message);
@@ -30,15 +30,15 @@ function Songs() {
     if (window.localStorage.getItem("access_token")) {
       accessToken = window.localStorage.getItem("access_token");
       refreshToken = window.localStorage.getItem("refresh_token");
-      getUserTopArtist();
+      getRecommendations();
     }
   }, []);
   return (
     <>
-      <h4 className="h4-styling">Your top Songs</h4>
+      <h4 className="h4-styling">Recommendations for you</h4>
       <div className="artists-grid">
         {accessToken.length > 0 ? (
-          userData.map((data) => {
+          recommendationsData.map((data) => {
             return (
               <div className="container" key={data.id}>
                 <div className="artist-image">
@@ -47,6 +47,9 @@ function Songs() {
                 <div className="artist-data">
                   <h4>Id : {data.id}</h4>
                   <h4>Name : {data.name}</h4>
+                  <h4>
+                    Duration : {(data.duration_ms / 60000).toFixed(2)} mins
+                  </h4>
                   <h4>Popularity : {data.popularity}</h4>
                 </div>
               </div>
@@ -62,4 +65,4 @@ function Songs() {
   );
 }
 
-export default Songs;
+export default Recommendations;

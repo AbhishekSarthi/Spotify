@@ -13,7 +13,7 @@ function User() {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: "https://api.spotify.com/v1/me/top/artists?limit=50",
+        url: "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=long_term",
         headers: {
           Authorization: authorization_token,
         },
@@ -35,7 +35,7 @@ function User() {
   }, []);
   return (
     <>
-      <h4>Your top artists</h4>
+      <h4 className="h4-styling">Your top artists</h4>
       <div className="artists-grid">
         {accessToken.length > 0 ? (
           artistData.map((data) => {
