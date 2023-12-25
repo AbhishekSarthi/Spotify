@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 body{
   margin: 0;
   padding: 0;
@@ -7,22 +11,18 @@ body{
   font-family: 'Open Sans', sans-serif;
   font-family: 'Roboto Mono', monospace;
 }
-/* .App {
-  display: grid;
-  align-items: center;
-  
-  justify-content: center;
-  }  */
 .Navbar{
-  /* display: flex; */
+  padding: 15px;
   width: 100%;
-  overflow: hidden;
-  text-align: center;
-  position: relative;
-  z-index: -1;
-  background-color: rgb(107, 143, 112);
-  margin-bottom: 5px;
+  text-align: left;
+  background-color: rgb(46, 165, 62);
+  /* margin-bottom: 5px; */
 }  
+.Navbar >ul{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  list-style-type: none;
+}
 
 /* .Navbar > h3{ */
   /* justify-content: center; */
@@ -46,6 +46,47 @@ body{
   border-radius: 15px;
 }
 
+.artists-grid{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 15px;
+  background-color: #292929;
+  padding: 10px;
+}  
+
+.container{
+  position: relative;
+  /* text-align: center; */
+}
+
+.artist-data{
+  width: 80%;
+  left:5%;
+  /* background-color: #292929; */
+  position: absolute;
+  font-weight: bold;
+  padding: 5px;
+  bottom: 8px;
+  transition: transform .5s;
+  /* left: 16px; */
+}
+.artist-data:hover{
+  
+  background-color: #2b2b2b;
+  border-radius: 10px;
+  transform: scale(1.05);
+}
+.artist-image{
+  
+  transition: transform .5s;
+}
+.artist-image:hover{
+  
+  /* background-color: #292929; */
+  border-radius: 10px;
+  transform: scale(1.05);
+}
 /* 
 button{
   margin-left: 43.5%;
