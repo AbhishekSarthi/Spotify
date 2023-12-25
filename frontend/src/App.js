@@ -2,9 +2,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import User from "./components/User";
 import Songs from "./components/Songs";
 import Recommendations from "./components/Recommendations";
+import Artists from "./components/Artists";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/artists" element={<User />} />
+          <Route path="/artists" element={<Artists />} />
           <Route path="/songs" element={<Songs />} />
           <Route path="/recommendations" element={<Recommendations />} />
         </Routes>

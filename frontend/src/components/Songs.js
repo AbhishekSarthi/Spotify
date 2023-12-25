@@ -42,12 +42,20 @@ function Songs() {
             return (
               <div className="container" key={data.id}>
                 <div className="artist-image">
-                  <img src={data.album.images[0].url} width="100%" alt="Song" />
+                  <img
+                    src={data.album.images[0].url}
+                    width="300px"
+                    alt="Song"
+                  />
                 </div>
                 <div className="artist-data">
-                  <h4>Id : {data.id}</h4>
-                  <h4>Name : {data.name}</h4>
-                  <h4>Popularity : {data.popularity}</h4>
+                  {/* <h4>id : {data.id}</h4> */}
+                  <h4>{data.name}</h4>
+                  <h5>{data.artists[0].name}</h5>
+                  <h6>
+                    {(data.duration_ms / 60000).toFixed(2)} mins / Popularity :{" "}
+                    {data.popularity}
+                  </h6>
                 </div>
               </div>
             );

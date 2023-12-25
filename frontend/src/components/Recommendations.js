@@ -13,7 +13,7 @@ function Recommendations() {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: "https://api.spotify.com/v1/recommendations?limit=20&seed_artists=6M2wZ9GZgrQXHCFfjv46we%2C26VFTg2z8YR0cCuwLzESi2",
+        url: "https://api.spotify.com/v1/recommendations?limit=30&seed_artists=6M2wZ9GZgrQXHCFfjv46we%2C06HL4z0CvFAxyc27GXpf02%2C6eUKZXaKkcviH0Ku9w2n3V%2C45dkTj5sMRSjrmBSBeiHym%2C7dGJo4pcD2V6oG8kP0tJRR&min_popularity=70",
         headers: {
           Authorization: authorization_token,
         },
@@ -35,22 +35,31 @@ function Recommendations() {
   }, []);
   return (
     <>
-      <h4 className="h4-styling">Recommendations for you</h4>
+      <h4 className="h4-styling">Random Recommendations</h4>
       <div className="artists-grid">
         {accessToken.length > 0 ? (
           recommendationsData.map((data) => {
             return (
               <div className="container" key={data.id}>
                 <div className="artist-image">
-                  <img src={data.album.images[0].url} width="100%" alt="Song" />
+                  <img
+                    src={data.album.images[0].url}
+                    width="300px"
+                    alt="Song"
+                  />
                 </div>
                 <div className="artist-data">
-                  <h4>Id : {data.id}</h4>
-                  <h4>Name : {data.name}</h4>
-                  <h4>
-                    Duration : {(data.duration_ms / 60000).toFixed(2)} mins
-                  </h4>
-                  <h4>Popularity : {data.popularity}</h4>
+                  {/* <h5>id : {data.id}</h5> */}
+                  <h4>{data.name}</h4>
+                  <h5>
+                    {data.artists.map((artist) => {
+                      return <span>{artist.name} </span>;
+                    })}
+                  </h5>
+                  <h6>
+                    {(data.duration_ms / 60000).toFixed(2)} mins / Popularity :{" "}
+                    {data.popularity}
+                  </h6>
                 </div>
               </div>
             );

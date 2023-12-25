@@ -13,7 +13,7 @@ function Navbar() {
     <div className="Navbar">
       <ul>
         <li>
-          <h3>Spotify App </h3>
+          <h3>Kind of Spotify 😎</h3>
         </li>
         {window.localStorage.getItem("access_token") ? (
           <></>

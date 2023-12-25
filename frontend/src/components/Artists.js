@@ -3,7 +3,7 @@ import axios from "axios";
 let accessToken = "";
 let refreshToken = "";
 
-function User() {
+function Artists() {
   let [artistData, setArtistData] = useState([]);
   useEffect(() => {
     const getUserTopArtist = async () => {
@@ -45,13 +45,14 @@ function User() {
                   <img
                     src={data.images[0].url}
                     width="300px"
+                    height="300px"
                     alt="Artist Photo"
                   />
                 </div>
                 <div className="artist-data">
-                  <h4>Id : {data.id}</h4>
-                  <h4>Name : {data.name}</h4>
-                  <h4>Popularity : {data.popularity}</h4>
+                  {/* <h4>id : {data.id}</h4> */}
+                  <h4>{data.name}</h4>
+                  <h5>Popularity : {data.popularity}</h5>
                 </div>
               </div>
             );
@@ -70,4 +71,4 @@ function User() {
   );
 }
 
-export default User;
+export default Artists;
