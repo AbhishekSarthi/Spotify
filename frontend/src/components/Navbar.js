@@ -19,29 +19,29 @@ function Navbar() {
           <></>
         ) : (
           <li>
-            <Link to="/">
+            <Link className="navbar-links" to="/">
               <h3>Login</h3>
             </Link>
           </li>
         )}
 
         <li>
-          <Link to="/artists">
+          <Link className="navbar-links" to="/artists">
             <h3>Top Artists</h3>
           </Link>
         </li>
         <li>
-          <Link to="/songs">
+          <Link className="navbar-links" to="/songs">
             <h3>Top Songs</h3>
           </Link>
         </li>
         <li>
-          <Link to="/recommendations">
+          <Link className="navbar-links" to="/recommendations">
             <h3>Recommendations</h3>
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link className="navbar-links" to="/">
             <h3
               onClick={() => {
                 window.localStorage.removeItem("access_token");

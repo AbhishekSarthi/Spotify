@@ -90,14 +90,13 @@ body{
 .h4-styling{
   padding: 10px;
 }
-/* 
-button{
-  margin-left: 43.5%;
-  
-  width: 200px;
-  background-color: #1ED760;
-  padding: 8px 30px;
-  color: white;
-  font-size: medium;
+.span-filters{
+  margin: .5%;
+  background-color: #24301f;
+  padding: 5px;
   border-radius: 15px;
-} */
+}
+.navbar-links{
+  text-decoration: none;
+  color: white;
+}

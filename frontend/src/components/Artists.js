@@ -5,6 +5,8 @@ let refreshToken = "";
 
 function Artists() {
   let [artistData, setArtistData] = useState([]);
+  let [timeFilter, setTimeFilter] = useState("long_term");
+  let [numberFilter, setNumberFilter] = useState("50");
   useEffect(() => {
     const getUserTopArtist = async () => {
       let authorization_token = "Bearer " + accessToken;
@@ -13,7 +15,7 @@ function Artists() {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=long_term",
+        url: `https://api.spotify.com/v1/me/top/artists?limit=${numberFilter}&time_range=${timeFilter}`,
         headers: {
           Authorization: authorization_token,
         },
@@ -32,10 +34,74 @@ function Artists() {
       refreshToken = window.localStorage.getItem("refresh_token");
       getUserTopArtist();
     }
-  }, []);
+  }, [timeFilter, numberFilter]);
   return (
     <>
       <h4 className="h4-styling">Your top artists</h4>
+      <h5>Filters : </h5>
+      <div
+        onChange={(e) => {
+          setTimeFilter(e.target.value);
+        }}
+      >
+        <input
+          className="span-filters"
+          type="radio"
+          value="short_term"
+          name="timeFilter"
+          checked={timeFilter === "short_term"}
+        />
+        <span className="span-filters">Short</span>
+        <input
+          className="span-filters"
+          type="radio"
+          value="medium_term"
+          name="timeFilter"
+          checked={timeFilter === "medium_term"}
+        />
+        <span className="span-filters">Medium</span>
+        <input
+          className="span-filters"
+          type="radio"
+          value="long_term"
+          name="timeFilter"
+          checked={timeFilter === "long_term"}
+          defaultChecked
+        />
+        <span className="span-filters">Long</span>
+      </div>
+      <div
+        onChange={(e) => {
+          setNumberFilter(e.target.value);
+        }}
+      >
+        <input
+          className="span-filters"
+          type="radio"
+          value="10"
+          name="numberFilter"
+          checked={numberFilter === "10"}
+        />
+        <span className="span-filters">10</span>
+        <input
+          className="span-filters"
+          type="radio"
+          value="25"
+          name="numberFilter"
+          checked={numberFilter === "25"}
+        />
+        <span className="span-filters">25</span>
+        <input
+          className="span-filters"
+          type="radio"
+          value="50"
+          name="numberFilter"
+          checked={numberFilter === "50"}
+          defaultChecked
+        />
+        <span className="span-filters">50</span>
+      </div>
+
       <div className="artists-grid">
         {accessToken.length > 0 ? (
           artistData.map((data) => {
@@ -63,10 +129,6 @@ function Artists() {
           </>
         )}
       </div>
-
-      {/* {artistData.forEach((artist) => {
-        <p>adsf</p>;
-      })} */}
     </>
   );
 }
